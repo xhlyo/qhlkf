@@ -1,24 +1,6 @@
-# vue3_gzcollege
+# vue2_college 项目内容
 
-## Project setup
-```
-npm install
-```
+#### 操作指南:
+[**点击查看**](./use_command.md)  
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
