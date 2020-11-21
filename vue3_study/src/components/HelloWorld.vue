@@ -32,13 +32,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-export default defineComponent({
+const components = defineComponent({
   name: 'HelloWorld',
   props: {
-    msg: String,
-  },
-});
+    msg: {
+      required:true,
+      type: String
+    }
+  }, // setup 的props 和 context 两个参数
+  setup(props,context){
+    props.msg
+    context.attrs
+  }
+}) 
+export default components;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
