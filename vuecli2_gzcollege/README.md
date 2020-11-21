@@ -1,4 +1,4 @@
-# vue3_school
+# vue3_gzcollege
 
 ## Project setup
 ```
@@ -21,5 +21,4 @@ npm run lint
 ```
 
 ### Customize configuration
-安装了anxios
 See [Configuration Reference](https://cli.vuejs.org/config/).

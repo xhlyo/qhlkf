@@ -1,12 +1,9 @@
 # hlkf  
-小鸿亮的开发    2020.11.20  20:22
-
-#### 测试学习 
-
-[**vue3_study**](./vue3_study/)   此学习项目已经完结
+小鸿亮的开发    2020.11.22  6:22
 
 #### 实战项目
-[**vue3_school**](./vue3_school/)  
+[**vuecli2_gzcollege**](./vuecli2_gzcollege/)  
+
 
 
 
