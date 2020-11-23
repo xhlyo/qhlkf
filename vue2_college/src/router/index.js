@@ -5,19 +5,41 @@ Vue.use(VueRouter)
 
 // 路由表
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/')
+  },
+  {
+    path: '/',
+    component: () => import('@/views/layout/'),
+    children: [ // 子路由渲染到父路由的 router-view 中
+      {
+        path: '', // 默认子路由
+        name: 'home',
+        component: () => import('@/views/home/'),
+        meta: { requiresAuth: false }
+      },
+      {
+        path: '/qa',
+        name: 'qa',
+        component: () => import('@/views/qa/'),
+        meta: { requiresAuth: false }
+      },
+      {
+        path: '/group',
+        name: 'group',
+        component: () => import('@/views/group/'),
+        meta: { requiresAuth: false }
+      },
+      {
+        path: '/my',
+        name: 'my',
+        component: () => import('@/views/my/'),
+        meta: { requiresAuth: false }
+      }
+    ]
+  }
 ]
 
 const router = new VueRouter({
