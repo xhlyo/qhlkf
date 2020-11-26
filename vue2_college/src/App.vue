@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <h1>Gua!州理工</h1>
+      <!-- Gua!州理工 -->
       <router-view/>   <!-- 路由出口 -->
   </div>
 </template>
