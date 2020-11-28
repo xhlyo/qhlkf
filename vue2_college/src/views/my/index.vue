@@ -1,52 +1,52 @@
 <template>
   <div class="my-container">
-     <van-cell-group>
+     <van-cell-group class="my-info">
       <van-cell
         class="base-info"
-        title="neirong"
-        value="内容"
         center
+        :border="false"
       >
         <van-image 
+          class="avatar"
           slot="icon"
-          width="50" 
-          height="50" 
           round
           fit="cover"
           src="https://img.yzcdn.cn/vant/cat.jpeg" 
         />
-        <div slot="title">昵称</div>
+        <div class="name" slot="title">昵称</div>
         <van-button
+          class="update-btn"
           size="small"
           round
         >编辑资料</van-button>
       </van-cell> 
-      <van-grid>
-        <van-grid-item>
-          <div slot="text">
-            <div class="span">123</div>
+      <van-grid class="data-info" :border="false">
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">999</div>
             <div class="text">文章</div>
           </div>        
         </van-grid-item>
-        <van-grid-item>
-          <div slot="text">
-            <div class="span">123</div>
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">5</div>
             <div class="text">关注</div>
           </div>        
         </van-grid-item>
-        <van-grid-item>
-          <div slot="text">
-            <div class="span">123</div>
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">30000</div>
             <div class="text">粉丝</div>
           </div>        
         </van-grid-item>
-        <van-grid-item>
-          <div slot="text">
-            <div class="span">123</div>
+        <van-grid-item class="data-info-item">
+          <div class="text-wrap" slot="text">
+            <div class="count">700</div>
             <div class="text">获赞</div>
           </div>        
         </van-grid-item>
       </van-grid>
+     </van-cell-group>
 
       <van-grid :column-num="2">
         <van-grid-item 
@@ -59,7 +59,6 @@
           text="历史记录" 
         />
       </van-grid>
-     </van-cell-group>
 
      <van-cell title="消息通知" is-link to="/" />
      <van-cell
@@ -95,6 +94,55 @@ export default {
 
 <style scoped lang="less">
 .my-container {
+  .my-info{
+    background: url("./banner.jpg") no-repeat;
+    background-size: cover;   // 背景填充
+    .base-info{
+      box-sizing: border-box;
+      height: 115px;
+      background-color: unset;
+      // 上边距38  下边距11
+      padding-top: 38px;
+      padding-bottom: 11px;
+      .avatar {    //  头像
+        box-sizing: border-box;
+        width: 66px;
+        height: 66px;
+        border: 1px solid #fff;  // 一个白环边框
+        margin-right: 11px;
+      }
+      .name {  // 昵称
+        font-size: 15px;
+        color: #fff;
+      }
+      .update-btn {  // 编辑资料 按钮
+        height: 16px;
+        font-size: 10px;  // 文字
+        color: #666666;
+      }
+    }
+    .data-info {  // 数据信息
+      .data-info-item {
+        height: 65px;
+        color: #fff;
+        .text-wrap {   
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .count {
+            font-size: 18px;
+          }
+          .text {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+    /deep/ .van-grid-item__content {
+      background-color: unset;
+    }
+  }
   .not-login {
     height: 180px;
     // background: url("./banner.png") no-repeat;
