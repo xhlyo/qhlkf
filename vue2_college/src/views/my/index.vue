@@ -1,6 +1,6 @@
 <template>
   <div class="my-container">
-     <van-cell-group class="my-info">
+     <van-cell-group v-if="user" class="my-info">
       <van-cell
         class="base-info"
         center
@@ -48,12 +48,27 @@
       </van-grid>
      </van-cell-group>
 
-      <van-grid :column-num="2">
+    <div v-else class="not-login">
+      <div @click="$router.push({
+        name: 'login',
+        query: {
+          redirect: '/my'
+        }
+      })">
+        <img class="not-logo" src="./not_login.png">
+      </div>
+      <div class="text">点击头像登录</div>
+    </div>
+
+
+      <van-grid class="nav-grid mb-4" :column-num="2">
         <van-grid-item 
+          class="nav-grid-item"
           icon-prefix="Guali"
           icon="shoucang" 
           text="收藏" />
         <van-grid-item 
+          class="nav-grid-item"
           icon-prefix="Guali"
           icon="lishi" 
           text="历史记录" 
@@ -63,41 +78,71 @@
      <van-cell title="消息通知" is-link to="/" />
      <van-cell
           class="mb-4"
-          title="小智同学"
+          title="广理图灵"
           is-link
           to="/user/chat"
      />
      <van-cell
+          v-if="user"
           class="logout-cell"
           title="退出登录"
-     />
+          @click="onLogout"
+     />   
   </div>
 </template>
   
 <script>
+import { mapState } from 'vuex'
+import { getCurrentUser } from '@/api/user'
+
 export default {
   name: 'MyIndex',
   components: {},
   props: {},
   data () {
     return {
-      active: 0
+      currentUser: {} // 当前登录用户信息
     }
   },
-  computed: {},
+  computed: {
+    ...mapState(['user'])
+  },
   watch: {},
-  created () {},
+  created () {
+    // this.loadCurrentUser()
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    async loadCurrentUser () { // 输出 data
+      const { data } = await getCurrentUser()
+      this.currentUser = data.data
+    },
+
+    onLogout () {
+      // 提示用户确认退出
+      // 确认 -> 处理退出
+      this.$dialog.confirm({
+        title: '退出提示',
+        message: '确认退出吗？'
+      })
+      .then(() => {  // 确认执行这里
+        // 清除用户登录状态
+        this.$store.commit('setUser', null)
+      })
+      .catch(() => { // 退出执行这里
+        // on cancel   
+      })
+    }
+  }
 }
 </script>
 
 <style scoped lang="less">
 .my-container {
-  .my-info{
+  .my-info {
     background: url("./banner.jpg") no-repeat;
     background-size: cover;   // 背景填充
-    .base-info{
+    .base-info {
       box-sizing: border-box;
       height: 115px;
       background-color: unset;
@@ -143,26 +188,50 @@ export default {
       background-color: unset;
     }
   }
+
   .not-login {
     height: 180px;
-    // background: url("./banner.png") no-repeat;
+    background: url("./GL_banner.jpg") no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .mobile {
+    .not-logo {   //  未登录时的头像
       width: 66px;
       height: 66px;
     }
-    .text {
+    .text {  //  文字
       font-size: 14px;
       color: #fff;
     }
   }
-    .logout-cell {
+
+  /deep/ .nav-grid {
+    .nav-grid-item {
+      height: 70px;
+      .Guali {
+        font-size: 22px;
+      }
+      .Guali-shoucang {
+        color: #eb5253;
+      }
+      .Guali-lishi {
+        color: #ff9d1d;
+      }
+      .van-grid-item__text {
+        font-size: 14px;
+        color: #333333;
+      }
+    }
+  }
+
+  .logout-cell {  // 退出登录 
     text-align: center;
     color: #d86262;
+  }
+  .mb-4 {  // 下边距为 4
+    margin-bottom: 4px;
   }
 }
 </style>

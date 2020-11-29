@@ -3,7 +3,7 @@
     <!-- 导航栏 -->
     <van-nav-bar
       class="app-nav-bar"
-      title="注册 / 登录"
+      title="登录"
       left-arrow
       @click-left="$router.back()"
     />
@@ -79,8 +79,8 @@ export default {
     data () {
     return {
       user: {
-        mobile: '13911111111',  // 手机号
-        code: '246810'   // 验证码
+        mobile: '17090086870', // 手机号
+        code: '246810' // 验证码
       },
       formRules: {
         mobile: [
@@ -121,7 +121,9 @@ export default {
         this.$store.commit('setUser', data.data)
         
         // 登录成功，跳转回原来页面
-        
+        // this.$router.back() // 先用这种方式，但是它不太好 , 有问题
+        this.$router.push(this.$route.query.redirect || '/')
+
       } catch (err) {
         console.log(err)
         this.$toast.fail('登录失败')
