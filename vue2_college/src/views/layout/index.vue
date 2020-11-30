@@ -8,7 +8,7 @@
     <van-tabbar v-model="active" route>
       <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>
       <van-tabbar-item icon="comment-o" to="/qa">问答</van-tabbar-item>
-      <van-tabbar-item icon="cluster-o" to="/group">小组</van-tabbar-item>
+      <van-tabbar-item icon="cluster-o" to="/message">消息</van-tabbar-item>
       <van-tabbar-item icon="manager-o" to="/my">我的</van-tabbar-item>
     </van-tabbar>
     <!-- /底部导航栏 -->

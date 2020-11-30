@@ -24,6 +24,9 @@
         v-for="channel in channels"
         :key="channel.id"
       >
+      <!-- 文章列表 -->
+      
+      <!-- /文章列表 -->
       </van-tab>
     </van-tabs>
     <!-- /文章频道列表 -->
@@ -33,10 +36,13 @@
   
 <script>
 import { getUserChannels } from '@/api/user'
+import ArticleList from './components/article-list'
 
 export default {
   name: 'HomeIndex',
-  components: {},
+  components: {
+    ArticleList,
+  },
   props: {},
   data () {
     return {

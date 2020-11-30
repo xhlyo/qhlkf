@@ -27,9 +27,9 @@ const routes = [
         meta: { requiresAuth: false }
       },
       {
-        path: '/group',
-        name: 'group',
-        component: () => import('@/views/group/'),
+        path: '/message',
+        name: 'message',
+        component: () => import('@/views/message/'),
         meta: { requiresAuth: false }
       },
       {
