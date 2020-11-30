@@ -1,12 +1,12 @@
 <template>
   <div class="message-container">
-  <van-nav-bar class="nav-header">
-    <slot slot="left"  name="left"></slot>
-    <slot slot="title" name="title">消息</slot>
-    <slot slot="right" name="right"><van-icon name="chat-o" to="/" class="icon_chat" /></slot>
-  </van-nav-bar>
+    <van-nav-bar class="nav-header">
+      <slot slot="left"  name="left"></slot>
+      <slot slot="title" name="title">消息</slot>
+      <slot slot="right" name="right"><van-icon name="chat-o" to="/" class="icon_chat" /></slot>
+    </van-nav-bar>
 
-    <van-grid class="nav-grid mb-6" :column-num="3">
+    <van-grid class="nav-grid mb-4" :column-num="3">
       <van-grid-item
         class="nav-grid-item" 
         icon-prefix="Guali"
@@ -27,18 +27,22 @@
       />
     </van-grid>
 
-    <van-cell
-      class="footer mb-4"
-      icon-prefix="Guali"
-      icon="shoucang" 
-      center
-      to="/" 
-    >校园消息</van-cell>
-
-    <van-cell
-      center
-      to="/" 
-    >测试</van-cell>
+    <van-cell-group class="footer mb-4">
+      <van-cell 
+        icon-prefix="Guali"
+        icon="xiaoxi" 
+        to="/"
+        title="校园公告"  
+        label="校园公告一定要看哦" />
+      <van-cell
+        icon-prefix="Guali"
+        icon="xiaoxi" 
+        to="/"  
+        title="最新消息" 
+        value="内容"
+        label="最新的校园消息不来看一下吗?" 
+      />
+    </van-cell-group>
 
   </div>
 </template>
@@ -58,9 +62,6 @@ export default {
   created () {},
   mounted () {},
   methods: {
-    onClickRight() {
-      Toast('按钮');
-    }
   }
 }
 </script>
@@ -84,10 +85,10 @@ export default {
         color: #eb5253;
     }
     .Guali-faxian {
-        color: #ff9d1d;
+        color: #925cc3;
     }
     .Guali-pinglun {
-        color: #ff9d1d;
+        color: #fb2c95;
     }
     .van-grid-item__text {   // 改图标下面字体的大小
         font-size: 10px;
@@ -97,11 +98,11 @@ export default {
   .footer {
     font-size: 16px;
   }
+  .Guali-xiaoxi {
+    color: #2f9de2;
+  }
   .mb-4 {  // 下边距为 4
     margin-bottom: 4px;
-  }
-  .mb-6 {  // 下边距为 6
-    margin-bottom: 6px;
-  }    
+  }  
 }
 </style>
