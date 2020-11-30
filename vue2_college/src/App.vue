@@ -12,9 +12,4 @@ export default {
 </script>
 
 <style lang="less">
-.box{
-  width: 200px;
-  height: 100px;
-  background-color: rebeccapurple;
-}
 </style>
