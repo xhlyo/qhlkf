@@ -25,7 +25,7 @@
         :key="channel.id"
       >
       <!-- 文章列表 -->
-      
+      <article-list :channel="channel" />
       <!-- /文章列表 -->
       </van-tab>
     </van-tabs>
