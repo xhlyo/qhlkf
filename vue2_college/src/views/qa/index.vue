@@ -1,17 +1,20 @@
 <template>
   <div class="qa-container">
-    <van-tabs v-model="active">
+    <van-tabs class="channel-tabs" v-model="active">
       <van-tab title="关注">
           <van-cell-group>
-            <van-cell title="单元格" value="内容" />
-            <van-cell title="单元格" value="内容" label="描述信息" />
+
           </van-cell-group>
       </van-tab>
       <van-tab title="推荐">
-          <van-cell-group>
-            <van-cell title="单元格" value="内容" />
-            <van-cell title="单元格" value="内容" label="描述信息" />
-          </van-cell-group>
+          <van-swipe class="my-swipe mb-4" :autoplay="3000" indicator-color="white">
+            <van-swipe-item>1</van-swipe-item>
+            <van-swipe-item>2</van-swipe-item>
+            <van-swipe-item>3</van-swipe-item>
+            <van-swipe-item>4</van-swipe-item>
+          </van-swipe>
+          <van-cell title="单元格" value="内容" />
+          <van-cell title="单元格" value="内容" label="描述信息" />
       </van-tab>
       <van-tab title="资源分享">
         <van-cell-group class="mb-4">
@@ -57,7 +60,7 @@
   
 <script>
 import { Toast } from 'vant';
-
+import { Swipe, SwipeItem } from 'vant';
 
 export default {
   name: 'QaIndex',
@@ -65,7 +68,7 @@ export default {
   props: {},
   data () {
     return {
-      active: 0
+      active: 0,
     }
   },
   computed: {},
@@ -85,6 +88,27 @@ export default {
 </script>
 
 <style scoped lang="less">
+.qa-container {
+  .channel-tabs {
+    /deep/ .van-tab {
+      border-right: 1px solid #edeff3;
+      border-bottom: 1px solid #edeff3;
+    }
+    /deep/ .van-tabs__line {
+      bottom: 20px;
+      width: 15px !important;
+      height: 3px;
+      background: #3296fa;
+    }
+  }
+}
+.my-swipe .van-swipe-item {
+    color: #fff;
+    font-size: 20px;
+    line-height: 100px;
+    text-align: center;
+    background-color: #39a9ed;
+}
 .mb-4 {  // 下边距为 4
     margin-bottom: 4px;
 } 
