@@ -52,11 +52,6 @@
         label="你关注的人给你发来了消息" 
       />
     </van-cell-group>
-
-    <div v-else class="not-login">
-    
-    </div> 
-
   </div>
 </template>
   
@@ -70,7 +65,7 @@ export default {
   props: {},
   data () {
     return {
-      active: 0
+
     }
   },
   computed: {
@@ -80,7 +75,9 @@ export default {
   created () {
 
   },
-  mounted () {},
+  mounted () {
+
+  },
   methods: {
   }
 }

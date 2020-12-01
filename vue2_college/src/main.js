@@ -21,6 +21,7 @@ Vue.config.productionTip = false
 
 // 创建 Vue 根实例 ,将 router 和 store 配置到根实例中
 // 把 App 根组件渲染到 #app 节点上
+
 new Vue({
   router,
   store,
