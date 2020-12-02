@@ -14,32 +14,42 @@
       + 在每次请求完毕后, 需要手动将 loading 设置为 false, 表示本次加载结束
       + 所有数据加载结束, finished 为 true, 此时不会触发 load 事件
      -->
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="onLoad"
+    <van-pull-refresh
+      v-model="isRefreshLoading"
+      :success-text="refreshSuccessText"
+      :success-duration="1500"
+      @refresh="onRefresh"
     >
-    <!-- <van-cell 
-      v-for="item in list" 
-      :key="item" 
-      :title="item" 
-    /> -->
-    <van-cell
-      v-for="(article, index) in articles"
-      :key="index"
-      :title="article.title"
-    />
-    </van-list>
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+      <article-item
+        v-for="(article, index) in articles"
+        :key="index"
+        :article="article"
+      />
+      <!--<van-cell
+        v-for="(article, index) in articles"
+        :key="index"
+        :title="article.title"
+      /> -->
+      </van-list>
+    </van-pull-refresh>  
   </div>
 </template>
   
 <script>
 import { getArticles } from '@/api/article'
+import ArticleItem from '@/components/article-item'   // 引入公共组件
 
 export default {
   name: 'ArticleList',
-  components: {},
+  components: {
+    ArticleItem      // 注册组件
+  },
   props: {
     channel: {
       type: Object ,
@@ -52,6 +62,8 @@ export default {
       loading: false, // 控制加载中的 loading 状态
       finished: false, // 控制加载结束的状态, 当加载结束, 不再触发加载更多
       timestamp: null, // 获取下一页数据的时间戳
+      isRefreshLoading: false, // 下拉刷新的 loading 状态
+      refreshSuccessText: '', // 下拉刷新成功的提示文本
     }
   },
   computed: {},
@@ -81,7 +93,25 @@ export default {
         this.finished = true
       }
     },
-    
+    async onRefresh () {
+      // 下拉刷新，组件自己就会展示 loading 状态
+      // 1. 请求获取数据
+      const { data } = await getArticles({
+        channel_id: this.channel.id, // 频道 ID
+        timestamp: Date.now(), 
+        // 为了大家方便学习，只要你传递不同的时间戳就一定给你返回不一样的数据，而且数据不为空
+        with_top: 1
+      })
+
+      // 2. 把数据放到数据列表中 (往顶部追加)
+      const { results } = data.data
+      this.articles.unshift(...results)
+
+      // 3. 关闭刷新的状态 loading
+      this.isRefreshLoading = false
+
+      this.refreshSuccessText = `更新了${results.length}条数据`
+    }
   }
 }
 </script>
