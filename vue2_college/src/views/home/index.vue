@@ -19,7 +19,7 @@
       标签页组件有一个功能，只有你第1次查看标签页的时候才会渲染里面的内容
      -->
     <van-tabs class="channel-tabs" v-model="active">
-      <van-tab
+      <van-tab  
         :title="channel.name"
         v-for="channel in channels"
         :key="channel.id"
@@ -91,8 +91,8 @@ export default {
       border-right: 1px solid #edeff3;
       border-bottom: 1px solid #edeff3;
     }
-    /deep/ .van-tabs__line {
-      bottom: 20px;
+    /deep/ .van-tabs__line {  //  标签页下面
+      bottom: 20px;  // 高度
       width: 15px !important;
       height: 3px;
       background: #3296fa;
@@ -100,5 +100,4 @@ export default {
   }
 
 }
-
 </style>
