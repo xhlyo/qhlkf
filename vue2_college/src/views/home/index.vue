@@ -28,26 +28,54 @@
       <article-list :channel="channel" />
       <!-- /文章列表 -->
       </van-tab>
+      <!-- 汉堡按钮定位把列表最后的位置给挡住了，解决办法的就是在这里添加一个占位元素 -->
+      <div
+        slot="nav-right"
+        class="wap-nav-placeholder"
+      ></div>
+      <div
+        slot="nav-right"
+        @click="isChannelEditShow = true"
+        class="wap-nav-wrap"
+      >
+        <van-icon name="wap-nav" />
+      </div>
     </van-tabs>
     <!-- /文章频道列表 -->
+
+    <van-popup
+      v-model="isChannelEditShow"
+      position="bottom"
+      closeable
+      close-icon-position="top-left"
+      get-container="body"
+      style="height: 100%"
+    >
+      <channel-edit 
+        :userChannels="channels"
+      />
+    </van-popup>
   </div>
 
 </template>
   
 <script>
 import { getUserChannels } from '@/api/user'
-import ArticleList from './components/article-list'
+import ArticleList from './components/article-list'  // 引入封装组件: 文章列表
+import ChannelEdit from './components/channel-edit'  // 引入封装组件: 频道编辑
 
 export default {
   name: 'HomeIndex',
   components: {
     ArticleList,
+    ChannelEdit,
   },
   props: {},
   data () {
     return {
       active: 0, // 控制被激活的标签   
       channels: [], // 频道列表
+      isChannelEditShow: false // 控制编辑频道的显示状态      
     }
   },
   computed: {},
@@ -96,6 +124,36 @@ export default {
       width: 15px !important;
       height: 3px;
       background: #3296fa;
+    }
+  }
+
+  .wap-nav-placeholder {
+    width: 33px;
+    flex-shrink: 0;  // 其他元素平分所有空间
+  }
+  //  汉堡按钮
+  .wap-nav-wrap {
+    position: fixed;
+    right: 0;   // 固定在右侧了
+    width: 33px;
+    height: 43px;
+    background-color: #fff;
+    display: flex;   // (display justify align-items) 里面内容水平垂直居中
+    justify-content: center;
+    align-items: center;
+    opacity: .9;   // 透明度
+    .van-icon {         // 图标
+      font-size: 24px;
+    } // &:before 伪元素 引入条的图片 line.png
+    &:before {
+      content: '';
+      width: 1px;
+      background: url("./line.png") no-repeat;
+      background-size: contain;
+      position: absolute; // 绝对定位
+      left: 0;
+      top: 0;
+      bottom: 0;
     }
   }
 
