@@ -140,7 +140,7 @@ export default {
 <style scoped lang="less">
 .my-container {
   .my-info {
-    background: url("./banner.jpg") no-repeat;
+    background: url("./banner.jpeg") no-repeat;
     background-size: cover;   // 背景填充
     .base-info {
       box-sizing: border-box;

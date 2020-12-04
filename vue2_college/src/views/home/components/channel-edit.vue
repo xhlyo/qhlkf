@@ -21,6 +21,7 @@
       v-for="(channel, index) in userChannels"
       :key="index"
       :text="channel.name"
+      @click="onUserChannelClick(channel, index)"
     />
    </van-grid>
 
@@ -113,7 +114,33 @@ export default {
       this.userChannels.push(channel)
       // TODO: 数据持久化
 
+    },
+
+    onUserChannelClick (channel, index) {
+      if (this.isEdit && index !== 0) {
+        // 编辑状态，删除频道
+        this.deleteChannel(channel, index)
+      } else{
+        // 非编辑状态，切换频道
+        this.switchChannel(index)
+      }
+    },
+
+    deleteChannel (channel, index) {
+        console.log('删除频道')
+        this.userChannels.splice(index, 1)
+        // 数据持久化
+    },
+
+    switchChannel (index) {
+        console.log('切换频道')
+        // 切换频道
+        this.$emit('update-active', index)
+        
+        // 关闭弹出层
+        this.$emit('close')
     }
+
   }
 }
 </script>

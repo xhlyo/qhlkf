@@ -35,6 +35,7 @@
         name="mobile"
         :rules="formRules.mobile"
         />
+        
       <van-field
         v-model="user.code"
         clearable
