@@ -56,6 +56,7 @@
        -->
       <channel-edit 
         :userChannels="channels"
+        :active="active"
         @close="isChannelEditShow = false"
         @update-active = "active = $event"
       />
@@ -152,6 +153,7 @@ export default {
     align-items: center;
     opacity: .9;   // 透明度
     .van-icon {         // 图标
+      padding-bottom: 2px;
       font-size: 24px;
     } // &:before 伪元素 引入条的图片 line.png
     &:before {

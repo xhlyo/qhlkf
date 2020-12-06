@@ -14,7 +14,7 @@ export const getAllChannels = () => {
 }
 
 /**
- * 添加频道
+ * 获取所有频道列表 (未登录)
  */
 export const addUserChannel = data => {
     return request({

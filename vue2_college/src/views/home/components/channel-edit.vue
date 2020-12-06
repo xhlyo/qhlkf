@@ -6,7 +6,7 @@
         class="channel-title"
       >我的频道</div>
       <van-button
-        type="danger"
+        color="#FF4500"
         plain
         round
         size="mini"
@@ -14,9 +14,13 @@
       >{{ isEdit ? '完成' : '编辑' }}</van-button>
    </van-cell>
 
+   <!--
+      :class="{ active: index === 激活的频道 }"
+     -->
    <van-grid :gutter="10">
     <van-grid-item 
       class="grid-item"
+      :class="{ active: index === active }"
       :icon=" (isEdit && index !== 0) ? 'clear' : '' "
       v-for="(channel, index) in userChannels"
       :key="index"
@@ -53,6 +57,10 @@ export default {
   props: {
     userChannels: {
       type: Array,
+      required: true
+    },
+    active: {
+      type: Number,
       required: true
     }
   },
@@ -127,16 +135,27 @@ export default {
     },
 
     deleteChannel (channel, index) {
-        console.log('删除频道')
+      // 如果删除的是当前激活频道之前的频道
+      if (index <= this.active ) {
+        // 更新激活频道的索引
+        this.$emit('update-active', this.active - 1)
+      }
         this.userChannels.splice(index, 1)
+
         // 数据持久化
+        if (this.user) {
+          // 登录了，持久化到线上
+          // await deleteUserChannel(channel.id)
+        } else {
+          // 没有登录，持久化到本地
+          setItem('user-channels', this.userChannels)          
+        }
     },
 
     switchChannel (index) {
-        console.log('切换频道')
         // 切换频道
         this.$emit('update-active', index)
-        
+
         // 关闭弹出层
         this.$emit('close')
     }
@@ -152,6 +171,9 @@ export default {
     font-size: 16px;
     color: #333333;
     margin-top: 0;
+  }
+  .van-button { // 按钮
+    width:52px;
   }
 
   .grid-item {
@@ -174,6 +196,12 @@ export default {
       z-index: 5;
     }
 
+  }
+
+  .active {
+    /deep/ .van-grid-item__text {
+      color: #FF6349 !important;
+    }
   }
 }
 </style>
