@@ -11,6 +11,16 @@ const routes = [
     component: () => import('@/views/login/')
   },
   {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/register/')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search/')
+  },
+  {
     path: '/',
     component: () => import('@/views/layout/'),
     children: [ // 子路由渲染到父路由的 router-view 中
