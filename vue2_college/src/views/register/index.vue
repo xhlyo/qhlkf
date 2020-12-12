@@ -1,5 +1,13 @@
 <template>
-  <div>注册页面 以后再写</div>
+  <div class="register-container">
+    <!-- 导航栏 -->
+    <van-nav-bar
+      class="app-nav-bar"
+      title="注册"
+      left-arrow
+      @click-left="$router.back()"
+    />  
+  </div>
 </template>
 
 <script>

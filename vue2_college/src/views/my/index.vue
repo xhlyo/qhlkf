@@ -75,7 +75,7 @@
         />
       </van-grid>
 
-     <van-cell title="消息通知" is-link to="/" />
+      <van-cell title="消息通知" is-link to="/" />
       <van-cell
           class="mb-4"
           title="登录"
