@@ -66,7 +66,12 @@
       <van-button class="login-btn" type="info" block @click="onLogin">登录</van-button>
       </div>
     </van-form>
-    <!-- /登录表单 -->   
+    <!-- / 登录表单 -->   
+
+    <!-- / 多种登录方式 还没有写 我是傻x -->  
+    <van-button to="/login">手机号登录</van-button>
+    <van-button to="/">用户名密码登录</van-button>
+    <van-button to="/register">账号注册</van-button>
   </div>
 </template>
 

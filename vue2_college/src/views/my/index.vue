@@ -57,7 +57,6 @@
       })">
         <img class="not-logo" src="./not_login.png">
       </div>
-      <div class="text">点击头像登录</div>
     </div>
 
 
