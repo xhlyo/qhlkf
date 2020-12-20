@@ -70,7 +70,7 @@
 
     <!-- / 多种登录方式 还没有写 我是傻x -->  
     <van-button to="/login">手机号登录</van-button>
-    <van-button to="/">用户名密码登录</van-button>
+    <van-button to="/login_password">用户名密码登录</van-button>
     <van-button to="/register">账号注册</van-button>
   </div>
 </template>
