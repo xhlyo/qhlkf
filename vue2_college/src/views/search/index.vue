@@ -11,23 +11,26 @@
           show-action
           @search="onSearch"
           @cancel="$router.back()"
+          @focus="isResultShow = false"
       />
     </form>
     <!-- / 搜索栏 -->
 
     <!-- 搜索结果 -->
-
+    <search-result
+      v-if="isResultShow"
+    />
     <!-- / 搜索结果 -->
 
     <!-- 联想建议 -->
     <search-suggestion
-
+      v-else-if="searchText"
     />
     <!-- / 联想建议 -->
 
     <!-- 历史记录 -->
     <search-history
-    
+      v-else
     />
     <!-- / 历史记录 -->    
   </div>
@@ -36,17 +39,22 @@
 <script>
 import SearchSuggestion from './components/search-suggestion'
 import SearchHistory from './components/search-history'
+import SearchResult from './components/search-result'
 
 export default {
  name: 'SearchIndex',
   components: {
     SearchSuggestion,
-    SearchHistory
+    SearchHistory,
+    SearchResult
   },
   props: {},
+ 
   data () {
     return {
-      searchText: '', // 搜索输入框的内容          
+      searchText: '', // 搜索输入框的内容
+      isResultShow: false, // 控制搜索结果的显示状态
+
     }
   },
   computed: {},
@@ -56,6 +64,9 @@ export default {
   methods: {
     onSearch () {
       console.log('on search')
+
+      // 展示搜索结果
+      this.isResultShow = true
     },
     onCancel () {
       console.log('取消')
