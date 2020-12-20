@@ -11,7 +11,7 @@
         size="small"
         to="/search"
       >搜索</van-button>
-    </van-nav-bar>
+    </van-nav-bar>                         
     <!-- /导航栏 -->
 
     <!-- 文章频道列表 -->
