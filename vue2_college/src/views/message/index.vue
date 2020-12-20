@@ -91,7 +91,7 @@
 
       <div v-else>
         <div class="word">
-            <van-cell value="登录后才可以查看消息提醒哦" size="large" />
+            <van-cell value="登录后才可以查看私信内容哦" size="large" />
         </div>
         <div class="button_center">
           <van-button round type="info">登录 / 注册 </van-button>
