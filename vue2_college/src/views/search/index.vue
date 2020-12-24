@@ -25,6 +25,7 @@
     <!-- 联想建议 -->
     <search-suggestion
       v-else-if="searchText"
+      :search-text="searchText"
     />
     <!-- / 联想建议 -->
 
@@ -58,7 +59,12 @@ export default {
     }
   },
   computed: {},
-  watch: {},
+  watch: {
+    // 监视搜索历史记录的变化  , 存储到本地存储  
+    // searchHistories () {
+      
+    // }
+  },
   created () {},
   mounted () {},
   methods: {
@@ -68,9 +74,6 @@ export default {
       // 展示搜索结果
       this.isResultShow = true
     },
-    onCancel () {
-      console.log('取消')
-    } 
   }
 }
 </script>
