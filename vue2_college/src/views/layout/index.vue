@@ -34,4 +34,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+/deep/ .van-tabbar-item__text {
+  font-size: 16px;    // 设置下边导航栏的字体大小
+}
 </style>

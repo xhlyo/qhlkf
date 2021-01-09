@@ -35,6 +35,7 @@
     <search-history
       v-else
       :search-histories="searchHistories"
+      @search="onSearch"
     />
     <!-- / 历史记录 -->    
   </div>
@@ -44,6 +45,9 @@
 import SearchSuggestion from './components/search-suggestion'
 import SearchHistory from './components/search-history'
 import SearchResult from './components/search-result'
+import { setItem, getItem } from '@/utils/storage' // 存储到本地
+// import { getSearchHistories } from '@/api/search'  // 登录后搜索
+import { mapState } from 'vuex'  // 知道用户有没有登录
 
 export default {
  name: 'SearchIndex',
@@ -57,17 +61,21 @@ export default {
     return {
       searchText: '', // 搜索输入框的内容
       isResultShow: false, // 控制搜索结果的显示状态
-      searchHistories: [] // 搜索历史数据
+      searchHistories: []  // 搜索历史数据
     }
   },
-  computed: {},
+  computed: {
+    ...mapState(['user'])
+  },
   watch: {
     // 监视搜索历史记录的变化  , 存储到本地存储  
     // searchHistories () {
       
     // }
   },
-  created () {},
+  created () {
+    this.loadSearchHistories()
+  },
   mounted () {},
   methods: {
     onSearch (searchText) {
@@ -82,9 +90,34 @@ export default {
       // 把最新的搜索历史记录放到顶部
       this.searchHistories.unshift(searchText)
 
+      // 如果用户已登录, 则把搜索历史记录存储到线上
+      //    提示: 只要我们调用获取搜索结果的数据接口, 后端会给我们自动存储用户的搜索历史记录
+      // 如果没有登录页, 则把搜索历史记录存储到本地
+      setItem('search-histories', this.searchHistories)
+
       // 展示搜索结果
       this.isResultShow = true
     },
+
+  async loadSearchHistories() {
+      // 因为后端帮我们存储的用户搜索历史记录太少了  (只有4条)
+      // 所以我们这里让后端返回的历史记录和本地的历史记录合并到一起
+      // 如果用户已登录
+      const searchHistories = getItem('search-histories') || []
+      // Set --> 数组
+      // if (this.user) {
+      //   const { data } = await getSearchHistories()
+      //   // 合并数组： [...数组, ...数组]
+      //   // 把 Set 转为数组：[...Set对象]
+      //   // 数组去重：[...new Set([...数组, ...数组])
+      //   searchHistories = [...new Set([
+      //     ...searchHistories,
+      //     ...data.data.keywords
+      //   ])]
+      // }
+
+      this.searchHistories = searchHistories
+    }
   }
 }
 </script>
