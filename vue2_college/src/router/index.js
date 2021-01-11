@@ -26,6 +26,15 @@ const routes = [
     component: () => import('@/views/search/')
   },
   {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('@/views/article/'), 
+    // props 传参, 推荐
+    // 将动态路由参数映射到组件的 props 中, 无论是访问还是维护性都很方便
+    props: true
+  },
+  // 
+  {
     path: '/',
     component: () => import('@/views/layout/'),
     children: [ // 子路由渲染到父路由的 router-view 中

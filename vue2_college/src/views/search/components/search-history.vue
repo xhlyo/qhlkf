@@ -3,8 +3,15 @@
     <van-cell
       title="搜索历史"
     >
+    <!--
+      prop 数据如果是引用类型 (数组、对象) 可以修改，
+      注意这个修改指的是：user.name = 'Jack'、arr.push(123)、arr.splice(0, 1)
+      但是任何 prop 数据都不能重新赋值：xxx = xxx
+      如果你想要让 prop 数据 = 新的数据：让父组件自己修改
+    -->
       <div v-if="isDeleteShow">
         <span
+          @click="$emit('update-histories',[])"
         >全部删除</span>
         &nbsp;&nbsp;
         <span @click="isDeleteShow = false">完成</span>
@@ -30,8 +37,6 @@
 </template>
 
 <script>
-import { setItem } from '@/utils/storage'
-
 export default {
  name: 'SearchHistory',
   components: {},
@@ -62,7 +67,7 @@ export default {
         // 如果已登录, 则删除线上的历史数据
         //    没有删除单个历史记录的接口
         //    只有删除所有历史记录的接口
-        setItem('search-histories', this.searchHistories)
+        // 父组件watch监视 统一处理了 setItem('search-histories', this.searchHistories)
         // setItem 不能删除线上数据  需要删除单个历史记录的接口
         return
       }

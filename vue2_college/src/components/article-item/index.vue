@@ -1,42 +1,53 @@
 <template>
-    <van-cell
-      class="article-item"
-    >
-      <div slot="title" class="title  van-multi-ellipsis--l3">{{article.title}}</div>
-      <div slot="label">
+  <!-- 首页 文章列表项 -->
+  <van-cell
+    class="article-item"
+    :to="{
+      name: 'article',
+      params: {
+        articleId: article.art_id
+      }
+    } "
+  >
+    <div slot="title" class="title  van-multi-ellipsis--l3">{{ article.title }}</div>
+    <div slot="label">
+      <div
+        v-if="article.cover.type === 3"
+        class="cover-wrap"
+      >
         <div
-          v-if="article.cover.type === 3" 
-          class="cover-wrap"
+          class="cover-wrap-item"
+          v-for="(img, index) in article.cover.images"
+          :key="index"
         >
-          <div 
-            class="cover-wrap-item"
-            v-for="(img , index) in article.cover.images"
-            :key="index"
-          >
-            <van-image 
-              class="cover-item"
-              fit="cover"
-              :src="img"
-            />
-          </div>
-        </div>
-        <div class="label-wrap">
-          <span>{{article.aut_name}}</span>
-          <span>{{ article.comm_count }}评论</span>
-          <span>{{ article.pubdate | relativeTime }}</span>
+          <van-image
+            class="cover-image"
+            fit="cover"
+            :src="img"
+          />
         </div>
       </div>
-      <!-- 默认插槽的名字叫 default , 可以省略 -->
-      <van-image
-        v-if="article.cover.type === 1"
-        class="right-cover"
-        fit="cover"
-        :src="article.cover.images[0]" 
-      />
-    </van-cell>
+      <div class="label-wrap">
+        <span>{{article.aut_name}}</span>
+        <span>{{ article.comm_count }}评论</span>
+        <span>{{ article.pubdate | relativeTime }}</span>
+      </div>
+    </div>
+    <!-- 默认插槽的名字叫 default , 可以省略 -->
+    <van-image
+      v-if="article.cover.type === 1"
+      class="right-cover"
+      fit="cover"
+      :src="article.cover.images[0]"
+    />
+  </van-cell>
 </template>
 
 <script>
+  // 在组件中获取动态路由参数:
+  //   方式一: this.$route.params.articleId
+  //   方式二: props 传参, 推荐
+  //   this.articleId
 export default {
   name: 'ArticleItem',
   components: {},
