@@ -23,8 +23,7 @@
         <div slot="label" class="pubdate">{{ article.pubdate | relativeTime }}</div>
         <van-button
           class="follow-btn"
-          color="#ff4500"
-          :type="article.is_followed ? 'default' : 'info' "
+          :color="article.is_followed ? '#e0e0e0': '#ff4500' "
           :icon="article.is_followed ? '' : 'plus' "
           round
           size="small"
@@ -39,14 +38,58 @@
       ></div>
       <!-- 文章评论列表 -->
       <!-- <comment>11111</comment>        -->
+      <!-- / 文章评论列表 -->
     </div>
+
+    <!-- 底部区域 -->
+    <div class="article-bottom">
+      <van-button
+        class="comment-btn"
+        type="default"
+        round
+        size="small"
+      >多说亿点好听的</van-button>
+      <van-icon
+        name="comment-o"
+        color="#777"
+      />
+      <van-icon
+        :color="article.is_collected ? 'orange' : '#777'"
+        :name="article.is_collected ? 'star' : 'star-o'"
+        @click="onCollect"
+      />
+      <van-icon
+        :color="article.attitude === 1 ? 'hotpink' : '#777'"
+        :name="article.attitude === 1 ? 'good-job' : 'good-job-o'"
+        @click="onLike"
+      />
+      <van-icon name="share" color="#777777"></van-icon>        
+    </div>
+    <!-- / 底部区域 -->
+
+    <!-- 发布评论 -->
+    <van-popup
+      position="bottom"
+    ><post-comment
+        target="articleId"
+      />
+    </van-popup>
+    <!-- / 发布评论 -->
+
     <!-- / 评论回复 -->
+
     </div>
 </template>
 
 <script>
 import './github-markdown.css'
-import { getArticleById } from '@/api/article'
+import { 
+  getArticleById,
+  addCollect,
+  deleteCollect,
+  addLike,
+  deleteLike 
+} from '@/api/article'
 import { ImagePreview } from 'vant'   // 使用这个组件 必须单独加载
 import { addFollow, deleteFollow } from '@/api/user'
 
@@ -69,7 +112,7 @@ export default {
     return {
       article: {}, // 文章数据对象
       isFollowLoading: false, // 关注用户按钮的 loading 状态
-
+      isCollectLoading: false, // 收藏的 loading 状态
     }
   },
   computed: {
@@ -137,7 +180,46 @@ export default {
       // 更新视图 原来是 true 变 false 原来是 false 变 true  二合一
       this.article.is_followed = !this.article.is_followed      
       this.isFollowLoading = false // 请求完成后 结束 加载旋转      
-    }
+    },
+
+    async onCollect () {
+      this.$toast.loading({
+        message: '操作中...',
+        forbidClick: true // 禁止背景点击
+      })
+    //   this.isCollectLoading = true // 无网络 请求时 加载 在转
+      if (this.article.is_collected) {
+        // 已收藏, 取消收藏
+        await deleteCollect(this.articleId)
+        // this.article.is_collected = false
+      } else {
+        // 没有收藏, 添加收藏
+        await addCollect(this.articleId)
+        // this.article.is_collected = true  
+      }
+      // 更新视图 原来是 true 变 false 原来是 false 变 true  二合一
+      this.article.is_collected = !this.article.is_collected      
+    //   this.isCollectLoading = false // 请求完成后 结束 加载旋转
+      this.$toast.success(`${this.article.is_collected ? '' : '取消'}收藏成功`)      
+    },
+
+    async onLike () {
+      this.$toast.loading({
+        message: '操作中...',
+        forbidClick: true // 禁止背景点击
+      })
+      if (this.article.attitude === 1) {
+        // 已点赞，取消点赞
+        await deleteLike(this.articleId)
+        this.article.attitude = -1
+      } else {
+        // 没有点赞，添加点赞
+        await addLike(this.articleId)
+        this.article.attitude = 1
+      }
+      this.$toast.success(`${this.article.attitude === 1 ? '' : '取消'}点赞成功`)
+    },
+
   }
 }
 </script>
@@ -195,5 +277,34 @@ ul { // 无序列表 不除去li前的圆点 none为去除
 .markdown-body { // 文章内容 
   padding: 14px;    // 上下边距
   background-color: #fff;    
+}
+
+.article-bottom { // 底部区域
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  height: 44px;    // 高度
+  border-top: 1px solid #d8d8d8;   // 块状到顶部
+  background-color: #fff;
+  .comment-btn { // 评论条
+    width: 160px;   
+    height: 23px;
+    border: 1px solid #eeeeee;
+    font-size: 15px;   // 文字大小
+    line-height: 23px;   // 行高
+    color: #a7a7a7;     // 文字颜色
+  }
+  .van-icon {
+    font-size: 24px;
+    .van-info {
+      font-size: 11px;
+      background-color: #e22829;
+    }          
+  }       
 }
 </style>
