@@ -37,7 +37,9 @@
         ref="article-content"
       ></div>
       <!-- 文章评论列表 -->
-      <!-- <comment>11111</comment>        -->
+      <comment-list 
+        :source="articleId"
+      />      
       <!-- / 文章评论列表 -->
     </div>
 
@@ -92,11 +94,12 @@ import {
 } from '@/api/article'
 import { ImagePreview } from 'vant'   // 使用这个组件 必须单独加载
 import { addFollow, deleteFollow } from '@/api/user'
+import CommentList from './components/comment-list'  // 引入组件 
 
 export default {
   name: 'ArticleIndex',
   components: {
-
+    CommentList, 
   },
   // 在组件中获取动态路由参数:
   //   方式一: this.$route.params.articleId
@@ -229,9 +232,9 @@ export default {
   position: fixed;
   left: 0;
   right: 0;
-  top: 46px;
-  bottom: 44px;
-  overflow-y: auto;      
+  top: 46px;  // 距离顶部
+  bottom: 44px;  // 距离底部
+  overflow-y: auto;  // 内部出现滚动条     
 }
 
 .title { // 标题

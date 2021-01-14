@@ -42,5 +42,9 @@
     "postcss-pxtorem": "^5.1.1",
     "vue-template-compiler": "^2.6.11",
     "webpack-cli": "^4.2.0"
-  }
+  },
+  "main": ".eslintrc.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

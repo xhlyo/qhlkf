@@ -8,32 +8,22 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/login/index.vue'),
+    meta: { requiresAuth: false }
   },
   {
     path: '/login_password',
     name: 'login_password',
-    component: () => import('@/views/login/login_password.vue')
+    component: () => import('@/views/login/login_password.vue'),
+    meta: { requiresAuth: false }
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/views/register/')
+    component: () => import('@/views/register/'),
+    meta: { requiresAuth: false }
   },
-  {
-    path: '/search',
-    name: 'search',
-    component: () => import('@/views/search/')
-  },
-  {
-    path: '/article/:articleId',
-    name: 'article',
-    component: () => import('@/views/article/'), 
-    // props 传参, 推荐
-    // 将动态路由参数映射到组件的 props 中, 无论是访问还是维护性都很方便
-    props: true
-  },
-  // 
+  // 一级路由渲染到根组件中的 router-view
   {
     path: '/',
     component: () => import('@/views/layout/'),
@@ -63,7 +53,23 @@ const routes = [
         meta: { requiresAuth: false }
       }
     ]
-  }
+  },
+
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search/'),
+    meta: { requiresAuth: false }
+  },
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('@/views/article/'), 
+    // props 传参, 推荐
+    // 将动态路由参数映射到组件的 props 中, 无论是访问还是维护性都很方便
+    props: true,
+    meta: { requiresAuth: false }
+  },
 ]
 
 const router = new VueRouter({
