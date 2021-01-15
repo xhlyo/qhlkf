@@ -7,12 +7,16 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-    <!-- <van-cell v-for="item in list" :key="item" :title="item" /> -->
-    <van-cell
+    <comment-item
+       v-for="(comment, index) in list"
+       :key="index"
+       :comment="comment"     
+    />
+    <!-- <van-cell
        v-for="(comment, index) in list"
        :key="index"
        :title="comment.content"
-    />
+    /> -->
     </van-list>
   </div>
 </template>
@@ -33,12 +37,20 @@ export default {
       type: [Number, String, Object],
       required: true // 必须的 不能没有
     },
-
+    list: {
+      type: Array,
+      // 数组或对象的默认值必须通过函数返回
+      // default: []  这是错的  简写如下
+      default: () => []
+      // default: function () {
+      //   return []
+      // }
+    }
 
   },
   data () {
     return {
-      list: [],      
+      // list: [],      
       loading: false,
       finished: false,      
       offset: null, // 获取下一页数据的页码
