@@ -70,6 +70,13 @@ const routes = [
     props: true,
     meta: { requiresAuth: false }
   },
+  { // 一级路由
+    path: '/user/profile',
+    name: 'user-profile',
+    component: () => import('@/views/user-profile'),
+    meta: { requiresAuth: false }
+  },
+
 ]
 
 const router = new VueRouter({
