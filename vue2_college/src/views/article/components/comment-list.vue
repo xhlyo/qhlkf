@@ -10,7 +10,8 @@
     <comment-item
        v-for="(comment, index) in list"
        :key="index"
-       :comment="comment"     
+       :comment="comment"
+       @reply-click="$emit('reply-click', $event)"     
     />
     <!-- <van-cell
        v-for="(comment, index) in list"
@@ -36,6 +37,12 @@ export default {
     source: {
       type: [Number, String, Object],
       required: true // 必须的 不能没有
+    },
+    // 获取文章评论, 使用字符 a
+    // 获取评论回复, 使用字符 c
+    type: {
+      type: String,
+      default: 'a'
     },
     list: {
       type: Array,
@@ -73,7 +80,7 @@ export default {
     async onLoad () {
       // 1. 请求获取数据
       const { data } = await getComments({   //  接口参数 type source offset limit
-        type: 'a', 
+        type: this.type, 
         // 评论类型, a-对文章(article)的评论, c-对评论(comment)的回复
         source: this.source.toString(), 
         // 源id, 文章id 或 评论id
