@@ -42,7 +42,9 @@ const productionGzipExtensions = ['js', 'css']
         }
 
     },
+    devServer: {
 
+    },
     // 第三方插件的选项
     pluginOptions: {}
 }

@@ -76,7 +76,12 @@ const routes = [
     component: () => import('@/views/user-profile'),
     meta: { requiresAuth: false }
   },
-
+  { // 一级路由
+    path: '/user/chat',
+    name: 'user-chat',
+    component: () => import('@/views/user-chat'),
+    meta: { requiresAuth: false }
+  },
 ]
 
 const router = new VueRouter({
