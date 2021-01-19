@@ -1,7 +1,9 @@
 <template>
   <div class="layout-container">
-    <!-- layout 的子路由出口，或者说是二级路由 -->
-    <router-view />
+    <!-- layout 的子路由出口, 或者说是二级路由 -->
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <!-- /子路由出口 -->
 
     <!-- 底部导航栏 Vant组件库的tab组件 -->
@@ -28,7 +30,9 @@ export default {
   computed: {},
   watch: {},
   created () {},
-  mounted () {},
+  mounted () {
+    this.$store.commit('addCachePage', 'LayoutIndex') // 渲染之后 再次给他缓存起来    
+  },
   methods: {}
 }
 </script>

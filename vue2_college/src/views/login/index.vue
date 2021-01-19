@@ -125,10 +125,13 @@ export default {
 
         // 将后端返回的用户登录状态(token等数据)放到 Vuex 容器中
         this.$store.commit('setUser', data.data)
+
+        // 清除 layout 的缓存, 让它重新渲染
+        this.$store.commit('removeCachePage', 'LayoutIndex')        
         
-        // 登录成功，跳转回原来页面
-        // this.$router.back() // 先用这种方式，但是它不太好 , 有问题
-        this.$router.push(this.$route.query.redirect || '/')
+        // 登录成功, 跳转回原来页面
+        this.$router.back() // 先用这种方式，但是它不太好 , 有问题
+        // this.$router.push(this.$route.query.redirect || '/')
 
       } catch (err) {
         console.log(err)
