@@ -1,11 +1,5 @@
 <template>
   <div class="message-container">
-    <!-- <van-nav-bar v-if="user" class="nav-header">
-      <slot slot="left"  name="left"></slot>
-      <slot slot="title" name="title">消息</slot>
-      <slot slot="right" name="right"><van-icon name="chat-o" to="/" class="icon_chat" /></slot>
-    </van-nav-bar> -->
-
     <van-tabs class="channel-tabs">
       <van-tab title="提醒">
         <van-grid  class="nav-grid mb-4" :column-num="3">
@@ -32,7 +26,7 @@
           />
         </van-grid>
         
-        <van-cell-group v-if="user" class="footer mb-4">
+        <van-cell-group class="footer mb-4">
           <van-cell 
             icon-prefix="Guali"
             icon="xiaoxi" 
@@ -54,19 +48,10 @@
             label="你关注的人给你发来了消息" 
           />
         </van-cell-group>
-        
-      <div v-else>
-        <div class="word">
-            <van-cell value="登录后才可以查看消息提醒哦" size="large" />
-        </div>
-        <div class="button_center">
-          <van-button round type="info" to="/login">登录 / 注册 </van-button>
-        </div>
-      </div>
       </van-tab>
 
       <van-tab title="私信">
-        <van-cell-group v-if="user" class="footer mb-4">
+        <van-cell-group class="footer mb-4">
           <van-cell 
             icon-prefix="Guali"
             icon="xiaoxi" 
@@ -88,16 +73,6 @@
             label="你关注的人给你发来了消息" 
           />
         </van-cell-group>
-
-      <div v-else>
-        <div class="word">
-            <van-cell value="登录后才可以查看私信内容哦" size="large" />
-        </div>
-        <div class="button_center">
-          <van-button round type="info" to="/login">登录 / 注册 </van-button>
-        </div>
-      </div>
-
       </van-tab>
     </van-tabs>
 
@@ -134,16 +109,11 @@ export default {
 
 <style scoped lang="less">
 .message-container  {
-  .nav-header {  
-    .icon_chat {
-      font-size: 22px;      
-    }
-  }
-
   .channel-tabs {
     /deep/ .van-tab {
       border-right: 1px solid #edeff3;
       border-bottom: 1px solid #edeff3;
+      font-size: 16px;
     }
     /deep/ .van-tabs__line {  //  标签页下面
       bottom: 20px;  // 高度
@@ -158,7 +128,7 @@ export default {
       height: 70px;
     }
     .Guali {
-      font-size: 22px;
+      font-size: 30px;
     }
     .Guali-xihuan {
         color: #eb5253;
@@ -170,28 +140,16 @@ export default {
         color: #fb2c95;
     }
     .van-grid-item__text {   // 改图标下面字体的大小
-        font-size: 10px;
+        font-size: 15px;
         color: #333333;
     }
   }
+  
   .footer {
     font-size: 16px;
   }
   .Guali-xiaoxi {
     color: #2f9de2;
-  }
-  .word {
-    position: absolute; 
-    padding-top: 150px;
-    padding-left: 90px;
-    .van-cell__value {
-        color: #969799;
-    }
-  }
-  .button_center {
-    position: absolute; 
-    padding-top: 200px;
-    padding-left: 140px;
   }
   .mb-4 {  // 下边距为 4
     margin-bottom: 4px;

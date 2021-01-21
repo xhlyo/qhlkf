@@ -113,7 +113,7 @@ export default {
       this.$toast.loading({
         message: '登录中...', // 提示文本
         forbidClick: true, // 禁止背景点击  其他内容不许点击
-        duration: 0 // 展示时长(ms)，值为 0 时，toast 不会消失
+        duration: 0 // 展示时长(ms), 值为 0 时, toast 不会消失
       })
       // 1. 找到数据接口
       // 2. 封装请求方法
@@ -130,8 +130,8 @@ export default {
         this.$store.commit('removeCachePage', 'LayoutIndex')        
         
         // 登录成功, 跳转回原来页面
-        this.$router.back() // 先用这种方式，但是它不太好 , 有问题
-        // this.$router.push(this.$route.query.redirect || '/')
+        // this.$router.back() // 有缺陷
+        this.$router.push(this.$route.query.redirect || '/') // 默认有就跳转到默认路径 没有就跳转首页
 
       } catch (err) {
         console.log(err)
