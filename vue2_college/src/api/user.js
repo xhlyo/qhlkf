@@ -34,7 +34,7 @@ export const sendSms = mobile => {
 export const getCurrentUser = () => {
   return request({
     method: 'GET',
-    url: '/app/v1_0/user'   // Bearer + 用户 token (在容器里面)
+    url: '/app/v1_0/user'   // `Bearer + 用户 token (在容器里面)`
     // headers: {     
     //   Authorization: `Bearer ${store.state.user.token}`
     // }

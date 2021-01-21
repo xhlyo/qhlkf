@@ -11,9 +11,9 @@
           slot="icon"
           round
           fit="cover"
-          src="https://img.yzcdn.cn/vant/cat.jpeg" 
+          :src="currentUser.photo" 
         />
-        <div class="name" slot="title">昵称</div>
+        <div class="name" slot="title">{{ currentUser.name }}</div>
         <van-button
           class="update-btn"
           size="small"
@@ -24,25 +24,25 @@
       <van-grid class="data-info" :border="false">
         <van-grid-item class="data-info-item">
           <div class="text-wrap" slot="text">
-            <div class="count">999</div>
+            <div class="count">{{ currentUser.art_count }}</div>
             <div class="text">文章</div>
           </div>        
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <div class="text-wrap" slot="text">
-            <div class="count">5</div>
+            <div class="count">{{ currentUser.follow_count }}</div>
             <div class="text">关注</div>
           </div>        
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <div class="text-wrap" slot="text">
-            <div class="count">30000</div>
+            <div class="count">{{ currentUser.fans_count }}</div>
             <div class="text">粉丝</div>
           </div>        
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <div class="text-wrap" slot="text">
-            <div class="count">700</div>
+            <div class="count">{{ currentUser.like_count }}</div>
             <div class="text">获赞</div>
           </div>        
         </van-grid-item>
@@ -120,10 +120,13 @@ export default {
     ...mapState(['user'])
   },
   watch: {},
-  created () {
-    // this.loadCurrentUser()
-  },
+  created () {},
   mounted () {},
+  activated () {
+    if (this.user) { // 如果激活了
+      this.loadCurrentUser()    
+    }
+  },
   methods: {
     async loadCurrentUser () { // 输出 data
       const { data } = await getCurrentUser()
