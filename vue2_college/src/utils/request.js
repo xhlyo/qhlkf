@@ -16,6 +16,16 @@ const refreshTokenReq = axios.create({ // refreshToken请求
 
 const request = axios.create({
     baseURL: 'http://ttapi.research.itcast.cn/', // 基础路径
+    // 新改了
+    timeout: 5000, // 请求的超时时间
+    //  //设置默认请求头, 使post请求发送的是 formdata 格式数据  // 
+    // //  axios的header默认的Content-Type 好像是'application/json;charset=UTF-8',
+    // //  我的项目都是用json格式传输, 如果需要更改的话, 可以用这种方式修改
+    headers: { 
+      "Content-Type": "application/json"
+
+    },
+    withCredentials: true, // 允许携带cookie
     transformResponse: [function (data) {
         // 后端返回的数据可能不是 JSON 格式字符串
         // 如果不是的话，那么 JSONbig.parse 调用就会报错
@@ -34,6 +44,8 @@ const request = axios.create({
         // return JSON.parse(data)
     }]    
 })
+
+
 
 // 请求拦截器
 // Add a request interceptor    照抄代码 
