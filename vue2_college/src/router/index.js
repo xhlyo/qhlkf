@@ -84,6 +84,30 @@ const routes = [
     component: () => import('@/views/user-chat'),
     meta: { requiresAuth: true }
   },
+  { // 我的文章
+    path: '/my/article',
+    name: 'my-article',
+    component: () => import('@/views/my_fun/my_article.vue'),
+    meta: { requiresAuth: true }
+  },
+  { // 我的关注
+    path: '/my/follow',
+    name: 'my-follow',
+    component: () => import('@/views/my_fun/my_follow.vue'),
+    meta: { requiresAuth: true }
+  },
+  { // 我的粉丝
+    path: '/my/fans',
+    name: 'my-fans',
+    component: () => import('@/views/my_fun/my_fans.vue'),
+    meta: { requiresAuth: true }
+  },
+  { // 我的所有赞
+    path: '/my/praise',
+    name: 'my-praise',
+    component: () => import('@/views/my_fun/my_praise.vue'),
+    meta: { requiresAuth: true }
+  },
 ]
 
 const router = new VueRouter({

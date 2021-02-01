@@ -10,10 +10,18 @@
     <van-tabbar v-model="active" route>
       <van-tabbar-item icon="home-o" to="/">首页</van-tabbar-item>
       <van-tabbar-item icon="comment-o" to="/qa">问答</van-tabbar-item>
+      <van-button
+        class="comment-btn"
+        icon="plus"
+        color="linear-gradient(to bottom right, #0080ff, #20d8df)"
+        round
+        size="small"
+      ></van-button>
       <van-tabbar-item icon="cluster-o" to="/message">消息</van-tabbar-item>
       <van-tabbar-item icon="manager-o" to="/my">我的</van-tabbar-item>
     </van-tabbar>
     <!-- /底部导航栏 -->
+
   </div>
 </template>
 
@@ -40,5 +48,9 @@ export default {
 <style scoped lang="less">
 /deep/ .van-tabbar-item__text {
   font-size: 16px;    // 设置下边导航栏的字体大小
+}
+.van-button { // 点击有弹出层 | 
+  top: 10px;  // 距离顶部10px
+  margin: 0 10px;
 }
 </style>
