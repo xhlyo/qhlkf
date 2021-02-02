@@ -20,6 +20,9 @@
        <van-field type="password" name="密码" label="密码" placeholder="请输入密码" v-model="loginpasswd.password" :rules="LoginPasswdRules.password"/>
        <div style="margin: 16px;">
         <van-button class="loginpasswd-btn" block type="info" native-type="submit">登录</van-button>
+        <div class="loginphone-btn">
+          <van-button to="/login">手机验证码登录</van-button>
+        </div>
        </div>
     </van-form>
   </div>
@@ -72,6 +75,9 @@ export default {
   .loginpasswd-btn {
     background-color: #6db4fb;   // 按钮颜色  去掉边框(有颜色)
     border: none;    
+  }
+  .loginphone-btn {
+    text-align: center;
   }
 }
 </style>

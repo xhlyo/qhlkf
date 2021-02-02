@@ -19,6 +19,12 @@
         @submit="onLogin"
         @failed="onFailed"
       >
+      <div class="imageBox">
+        <img src="./normal.png" alt="" class="active">
+        <img src="./greet.png" alt="">
+        <img src="./blind.png" alt="">
+        <img src="" alt="">
+      </div>
         <van-field
           v-model="user.mobile"
           icon-prefix="Guali"
@@ -57,8 +63,12 @@
         <div class="login-btn-wrap">
           <van-button class="login-btn" type="info" block @click="onLogin">登录</van-button>
         </div>
-        <van-button to="/login">手机号登录</van-button>
-        <van-button to="/login_password">用户名密码登录</van-button>
+        <div class="other_login">
+          <div class="other_text">
+            <van-cell title="其他登录方式" size="15px" />
+          </div>
+          <van-button to="/login_password">用户名密码登录</van-button>
+        </div>
       </van-form>
       <!-- / 登录表单 -->
       </van-tab>
@@ -169,7 +179,9 @@ export default {
         this.$toast.fail('登录失败')
       }
     },
+    async onRegist () {
 
+    },
     onFailed (error) {
       if (error.errors[0]) {
         this.$toast({
@@ -226,7 +238,7 @@ export default {
 
 <style scoped lang="less">
 .login-container {
-    .channel-tabs {
+  .channel-tabs {
     /deep/ .van-tab {
       border-right: 1px solid #edeff3;
       border-bottom: 1px solid #edeff3;
@@ -237,6 +249,9 @@ export default {
       height: 3px;
       background: #3296fa;
     }
+  }
+  img {
+    height: 100px;
   }
   .send-btn {
     width: 76px;
@@ -257,5 +272,14 @@ export default {
       }
     }
   }
+  .other_login {
+    text-align: center;
+    .other_text {
+      text-align: center;
+      span {
+        color: rgb(66, 112, 197);
+      }
+    }  
+  } 
 }
 </style>
