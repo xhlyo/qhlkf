@@ -75,19 +75,6 @@
         />
       </van-grid>
 
-      <van-cell title="消息通知" is-link to="/" />
-      <van-cell
-          class="mb-4"
-          title="登录"
-          is-link
-          to="/login"
-      />
-      <van-cell
-          class="mb-4"
-          title="注册"
-          is-link
-          to="/register"
-      /> 
      <van-cell
           class="mb-4"
           title="广理图灵"

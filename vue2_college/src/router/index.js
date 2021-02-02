@@ -19,12 +19,6 @@ const routes = [
     component: () => import('@/views/login/login_password.vue'),
     meta: { requiresAuth: false }
   },
-  {
-    path: '/register',
-    name: 'register',
-    component: () => import('@/views/register/'),
-    meta: { requiresAuth: false }
-  },
   // 一级路由渲染到根组件中的 router-view
   {
     path: '/',

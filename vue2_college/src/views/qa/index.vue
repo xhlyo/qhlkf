@@ -48,23 +48,19 @@
             <van-cell title="单元格" value="内容" label="描述信息" />
         </van-cell-group> 
       </van-tab>
-      <van-tab title="热心求助">
-          <van-cell-group>
-            <van-cell title="单元格" value="内容" />
-            <van-cell title="单元格" value="内容" label="描述信息" />
-          </van-cell-group>
-      </van-tab>
     </van-tabs>
   </div>
 </template>
   
 <script>
 import { Toast } from 'vant';
-import { Swipe, SwipeItem } from 'vant';
+import '../article/github-markdown.css' // 引入 github 的 markdown 样式来写问答模块
 
 export default {
   name: 'QaIndex',
-  components: {},
+  components: {
+
+  },
   props: {},
   data () {
     return {

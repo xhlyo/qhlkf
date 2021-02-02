@@ -1,15 +1,86 @@
 <template>
   <div class="login-container">
     <!-- 导航栏 -->
-    <van-nav-bar
+    <!-- <van-nav-bar
       class="app-nav-bar"
       title="登录"
       left-arrow
       @click-left="$router.back()"
-    />
-    <!-- /导航栏 -->
+    /> -->
 
-    <!-- 登录表单 -->
+    <van-tabs class="channel-tabs" >
+      <van-tab title="登录">
+      <!-- 登录表单 -->
+      <van-form 
+        :show-error="false"
+        :show-error-message="false"
+        validate-first
+        ref="login-form"
+        @submit="onLogin"
+        @failed="onFailed"
+      >
+        <van-field
+          v-model="user.mobile"
+          icon-prefix="Guali"
+          left-icon="shouji"
+          center
+          placeholder="请输入手机号"
+          name="mobile"
+          :rules="formRules.mobile"
+        />  
+        <van-field
+          v-model="user.code"
+          clearable
+          icon-prefix="Guali"
+          left-icon="yanzhengma"
+          center
+          placeholder="请输入验证码" 
+          name="code"
+          :rules="formRules.code">
+          <template #button>
+            <van-count-down
+              v-if="isCountDownShow"
+              :time="1000 * 60"
+              format="ss s"
+              @finish="isCountDownShow = false"
+            />
+            <van-button 
+              v-else
+              class="send-btn" 
+              size="mini" 
+              round 
+              :loading="isSendSmsLoading"
+              @click.prevent="onSendSms"
+            >发送验证码</van-button>
+          </template>
+        </van-field>
+        <div class="login-btn-wrap">
+          <van-button class="login-btn" type="info" block @click="onLogin">登录</van-button>
+        </div>
+        <van-button to="/login">手机号登录</van-button>
+        <van-button to="/login_password">用户名密码登录</van-button>
+      </van-form>
+      <!-- / 登录表单 -->
+      </van-tab>
+
+      <van-tab title="注册">
+      <!-- 注册表单 -->
+        <van-form  
+          :show-error="false"
+          :show-error-message="false"
+          @submit="onRegist"
+          @failed="onFailed"
+        >
+        <van-field name="用户名" label="用户名" placeholder="请输入用户名" v-model="regist.username" :rules="RegistRules.username"/>
+        <van-field type="password" name="密码" label="密码" placeholder="请输入密码" v-model="regist.password" :rules="RegistRules.password"/>
+          <div style="margin: 16px;">
+            <van-button class="regist-btn" block type="info" native-type="submit">提交</van-button>
+          </div>
+        </van-form>
+      </van-tab>
+      <!-- / 注册表单 -->
+    </van-tabs> 
+    <!-- / 导航栏 -->
     <!--
       基于 Vant 的表单验证：
       1、使用 van-form 组件包裹所有的表单项 van-field
@@ -17,61 +88,9 @@
          当表单提交的时候会触发 submit 事件
          提示：只有表单验证通过，它才会调用 submit
       3、使用 Field 的rules属性定义校验规则
-     -->
-    <van-form 
-      :show-error="false"
-      :show-error-message="false"
-      validate-first
-      ref="login-form"
-      @submit="onLogin"
-      @failed="onFailed"
-    >
-      <van-field
-        v-model="user.mobile"
-        icon-prefix="Guali"
-        left-icon="shouji"
-        center
-        placeholder="请输入手机号"
-        name="mobile"
-        :rules="formRules.mobile"
-        />
-        
-      <van-field
-        v-model="user.code"
-        clearable
-        icon-prefix="Guali"
-        left-icon="yanzhengma"
-        center
-        placeholder="请输入验证码" 
-        name="code"
-        :rules="formRules.code">
-        <template #button>
-        <van-count-down
-            v-if="isCountDownShow"
-            :time="1000 * 60"
-            format="ss s"
-            @finish="isCountDownShow = false"
-          />
-        <van-button 
-            v-else
-            class="send-btn" 
-            size="mini" 
-            round 
-            :loading="isSendSmsLoading"
-            @click.prevent="onSendSms"
-        >发送验证码</van-button>
-        </template>
-      </van-field>
-      <div class="login-btn-wrap">
-      <van-button class="login-btn" type="info" block @click="onLogin">登录</van-button>
-      </div>
-    </van-form>
-    <!-- / 登录表单 -->   
+     -->   
 
     <!-- / 多种登录方式 还没有写 我是傻x -->  
-    <van-button to="/login">手机号登录</van-button>
-    <van-button to="/login_password">用户名密码登录</van-button>
-    <van-button to="/register">账号注册</van-button>
   </div>
 </template>
 
@@ -100,7 +119,19 @@ export default {
         ]
       },
       isCountDownShow: false, // 控制倒计时和发送按钮的显示状态
-      isSendSmsLoading: false // 发送验证码按钮的 loading 状态
+      isSendSmsLoading: false, // 发送验证码按钮的 loading 状态
+      regist: {
+        username: '', // 用户名
+        password: ''  // 密码
+      },
+      RegistRules: {
+        username: [
+          { required: true, message: '用户名不能为空'}
+        ],
+        password: [
+          { required: true, message: '密码不能为空'}
+        ]
+      }
     }
   },
   computed: {},
@@ -195,6 +226,18 @@ export default {
 
 <style scoped lang="less">
 .login-container {
+    .channel-tabs {
+    /deep/ .van-tab {
+      border-right: 1px solid #edeff3;
+      border-bottom: 1px solid #edeff3;
+    }
+    /deep/ .van-tabs__line {
+      bottom: 20px;
+      width: 15px !important;
+      height: 3px;
+      background: #3296fa;
+    }
+  }
   .send-btn {
     width: 76px;
     height: 23px;
