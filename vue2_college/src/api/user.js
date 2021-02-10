@@ -3,17 +3,26 @@
  */
 import request from '@/utils/request'
 
+
 // 在非组件模块中获取 store 必须通过这种方式
 // 这里单独加载 store 和 在 组件中 this.$store 是一个东西 
 // import store from '@/store/'
 
 /**
  * 登录/注册
- */
+ */ 
 export const login = data => {
     return request({
       method: 'POST',
       url: '/app/v1_0/authorizations',
+      data
+    })
+}
+
+export const regist = data => {
+    return request({
+      method: 'POST',
+      url: 'http://localhost:88/api/consumer/register',
       data
     })
 }
@@ -24,7 +33,8 @@ export const login = data => {
 export const sendSms = mobile => {
     return request({
       method: 'GET',
-      url: `/app/v1_0/sms/codes/${mobile}`
+      // url: `http://www.tuling.com/api/consumer/code/${mobile}`
+      url: `http://www.tuling.com:88/api/consumer/code/${mobile}`
     })
 }
 

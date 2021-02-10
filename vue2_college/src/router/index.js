@@ -101,7 +101,7 @@ const routes = [
     name: 'my-praise',
     component: () => import('@/views/my_fun/my_praise.vue'),
     meta: { requiresAuth: true }
-  },
+  }
 ]
 
 const router = new VueRouter({

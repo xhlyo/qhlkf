@@ -83,8 +83,11 @@
         >
         <van-field name="用户名" label="用户名" placeholder="请输入用户名" v-model="regist.username" :rules="RegistRules.username"/>
         <van-field type="password" name="密码" label="密码" placeholder="请输入密码" v-model="regist.password" :rules="RegistRules.password"/>
+        <van-field type="password" name="确认密码" label="确认密码" placeholder="确认密码" v-model="regist.t_password" :rules="RegistRules.t_password"/>  
+        <van-field type="txts" name="手机号码" label="手机号码" placeholder="请输入手机号码" v-model="regist.phone" :rules="RegistRules.phone"/>  
+          
           <div style="margin: 16px;">
-            <van-button class="regist-btn" block type="info" native-type="submit">提交</van-button>
+            <van-button class="regist-btn" block type="info" native-type="submit">注册</van-button>
           </div>
         </van-form>
       </van-tab>
@@ -105,7 +108,7 @@
 </template>
 
 <script>
-import { login , sendSms } from '@/api/user'
+import { login , sendSms , regist } from '@/api/user'
 
 export default {
     name: 'LoginIndex',
@@ -132,7 +135,8 @@ export default {
       isSendSmsLoading: false, // 发送验证码按钮的 loading 状态
       regist: {
         username: '', // 用户名
-        password: ''  // 密码
+        password: '',  // 密码
+        phone: ''
       },
       RegistRules: {
         username: [
@@ -140,6 +144,15 @@ export default {
         ],
         password: [
           { required: true, message: '密码不能为空'}
+        ],
+        t_password:[
+          { required: true, message: '请确认密码'},
+          
+
+        ],
+        phone: [
+          { required:true,message: '电话号码不能为空'},
+          { pattern: /^1[3|5|7|8|9]\d{9}$/, message: '手机号格式错误' }
         ]
       }
     }
@@ -162,6 +175,7 @@ export default {
       try {
         const { data } = await login(this.user)
         // 4. 处理响应结果
+        console.log(data)
         this.$toast.success('登录成功')
 
         // 将后端返回的用户登录状态(token等数据)放到 Vuex 容器中
@@ -180,7 +194,46 @@ export default {
       }
     },
     async onRegist () {
+      try {
+        const { data } = await regist(this.regist)
+        console.log(data)
+        this.$toast.success('注册成功')
+        this.$router.push(this.$route.query.redirect || '/') // 默认有就跳转到默认路径 没有就跳转首页
+      } catch (err) {
+        console.log(err)
+        this.$toast.fail('注册失败')
+      }
+      // let registerInfo = {
+      //   username:this.regist.username,
+      //   password:this.regist.password,
+      //   phone:this.regist.phone
+      // };
+      // this.$api.regist(registerInfo).then((result) => {
+      //   console.log(result)
+      //   this.$toast.success('注册成功')
+      // }).catch((err) => {
+      //   console.log(err)
+      //   this.$toast.fail('注册失败')
+      // });
 
+      // const that = this
+      // // 校验成功向后端发送请求
+      // this.axios.post("http://localhost:88/api/consumer/register",{
+      //   username:this.regist.username,
+      //   password:this.regist.password,
+      //   phone:this.regist.phone
+
+      // }).then(function(resp){
+      //     // console.log(resp.data.code)
+      //     if(resp.data.code===1){
+      //       console.log(resp.data.code)
+      //       // this.$router.push(this.$route.query.redirect || '/') // 默认有就跳转到默认路径 没有就跳转首页
+      //       that.$router.push('/')
+      //     }
+      // }) .catch(function(resp){
+			// 		console.log(resp);
+      //   });
+        
     },
     onFailed (error) {
       if (error.errors[0]) {
