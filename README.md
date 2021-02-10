@@ -66,4 +66,4 @@
       
 重写   2021.2.2  删除一些路由页面 而配置在同一页面里面
 
-增加了 cookies.js 
+安装了 js-cookies 卸载 vue-cookies
