@@ -10,6 +10,10 @@ import { Toast } from 'vant'
 import store from '@/store/'
 import router from '@/router/'
 
+// 超时
+// axios.defaults.timeout = 1500
+// axios.defaults.withCredentials = true
+
 const refreshTokenReq = axios.create({ // refreshToken请求
   baseURL: 'http://ttapi.research.itcast.cn/'
 })
