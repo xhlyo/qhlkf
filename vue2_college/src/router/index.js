@@ -101,7 +101,15 @@ const routes = [
     name: 'my-praise',
     component: () => import('@/views/my_fun/my_praise.vue'),
     meta: { requiresAuth: true }
-  }
+  },
+
+  { // 我的收藏
+    path: '/my/keep',
+    name: 'my-keep',
+    component: () => import('@/views/my_fun/my_keep.vue'),
+    meta: { requiresAuth: true }
+  },
+  
 ]
 
 const router = new VueRouter({

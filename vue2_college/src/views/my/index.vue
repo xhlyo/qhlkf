@@ -61,17 +61,24 @@
     </div>
 
 
-      <van-grid class="nav-grid mb-4" :column-num="2">
+      <van-grid class="nav-grid mb-4" :column-num="3">
         <van-grid-item 
           class="nav-grid-item"
           icon-prefix="Guali"
           icon="shoucang"
+          to="/my/keep"
           text="收藏" />
         <van-grid-item 
           class="nav-grid-item"
           icon-prefix="Guali"
           icon="lishi" 
           text="历史记录" 
+        />
+        <van-grid-item 
+          class="nav-grid-item"
+          icon-prefix="Guali"
+          icon="shangcheng" 
+          text="积分商城" 
         />
       </van-grid>
 
@@ -220,6 +227,9 @@ export default {
       }
       .Guali-lishi {
         color: #ff9d1d;
+      }
+      .Guali-shangcheng {
+        color: #0000ff;
       }
       .van-grid-item__text {
         font-size: 14px;
