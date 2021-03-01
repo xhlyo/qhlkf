@@ -16,6 +16,7 @@
         color="linear-gradient(to bottom right, #0080ff, #20d8df)"
         round
         size="small"
+        to="/send"
       ></van-button>
       <van-tabbar-item icon="cluster-o" to="/message">消息</van-tabbar-item>
       <van-tabbar-item icon="manager-o" to="/my">我的</van-tabbar-item>

@@ -52,6 +52,13 @@ const routes = [
   },
 
   {
+    path: '/send',
+    name: 'send',
+    component: () => import('@/views/layout/components/sendItem.vue'),
+    meta: { requiresAuth: true }
+  },
+
+  {
     path: '/search',
     name: 'search',
     component: () => import('@/views/search/'),
