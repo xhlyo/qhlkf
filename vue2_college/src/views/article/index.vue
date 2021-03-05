@@ -167,6 +167,7 @@ export default {
       articleId)
       this.article = data.data
 
+      console.log(data.data)
       /** 数据改变影响视图更新 ( DOM 数据 ) 不是立即的 
        *  所以如果需要修改数据后马上操作被该数据影响的视图 DOM 
        *  需要把这个代码放到 $nextTick 中

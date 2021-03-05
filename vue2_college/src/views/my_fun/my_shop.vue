@@ -1,18 +1,10 @@
 <template>
-  <div class="send-container">
-    <van-nav-bar
-      class="app-nav-bar"
-      title="发表动态"
-      left-arrow
-      @click-left="$router.back()"
-    />
-    发表动态的地方
-  </div>  
+  <div class="praise-container">积分商城</div>  
 </template>
 
 <script>
 export default {
-  name: 'send',
+  name: 'My_shop',
   components: {}, 
   props: {}, 
   data () {
