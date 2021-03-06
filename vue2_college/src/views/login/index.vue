@@ -19,12 +19,6 @@
         @submit="onLogin"
         @failed="onFailed"
       >
-      <div class="imageBox">
-        <img src="./normal.png" alt="" class="active">
-        <img src="./greet.png" alt="">
-        <img src="./blind.png" alt="">
-        <img src="" alt="">
-      </div>
         <van-field
           v-model="user.mobile"
           icon-prefix="Guali"
@@ -64,7 +58,7 @@
           <van-button class="login-btn" type="info" block @click="onLogin">登录</van-button>
         </div>
         <div class="other_login">
-          <div class="other_text">
+          <div class="other_text  mb-10">
             <van-cell title="其他登录方式" size="15px" />
           </div>
           <van-button to="/login_password">用户名密码登录</van-button>
@@ -147,7 +141,6 @@ export default {
         ],
         t_password:[
           { required: true, message: '请确认密码'},
-          
 
         ],
         phone: [
@@ -333,6 +326,9 @@ export default {
         color: rgb(66, 112, 197);
       }
     }  
+  }
+  .mb-10 {  // 下边距为 10
+    margin-bottom: 10px;    
   } 
 }
 </style>

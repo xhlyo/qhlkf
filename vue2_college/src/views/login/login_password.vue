@@ -74,7 +74,8 @@ export default {
 .loginpasswd-container {
   .loginpasswd-btn {
     background-color: #6db4fb;   // 按钮颜色  去掉边框(有颜色)
-    border: none;    
+    border: none;
+    margin-bottom: 10px;    
   }
   .loginphone-btn {
     text-align: center;
