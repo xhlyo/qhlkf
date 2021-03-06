@@ -1,8 +1,8 @@
 <template>
-  <div class="keep-container">
+  <div class="history-container">
     <van-nav-bar
       class="app-nav-bar"
-      title="我的收藏"
+      title="历史记录"
       left-arrow
       @click-left="$router.back()"
     />
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'My_keep',
+  name: 'My_history',
   components: {}, 
   props: {}, 
   data () {

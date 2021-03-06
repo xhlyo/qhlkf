@@ -1,17 +1,17 @@
 <template>
-  <div class="keep-container">
+  <div class="keep-praise">
     <van-nav-bar
       class="app-nav-bar"
-      title="我的收藏"
+      title="点赞与收藏"
       left-arrow
       @click-left="$router.back()"
-    />
+    />       
   </div>  
 </template>
 
 <script>
 export default {
-  name: 'My_keep',
+  name: 'Keep_praise',
   components: {}, 
   props: {}, 
   data () {

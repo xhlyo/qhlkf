@@ -71,13 +71,15 @@
         <van-grid-item 
           class="nav-grid-item"
           icon-prefix="Guali"
-          icon="lishi" 
+          icon="lishi"
+          to="/history" 
           text="历史记录" 
         />
         <van-grid-item 
           class="nav-grid-item"
           icon-prefix="Guali"
-          icon="shangcheng" 
+          icon="shangcheng"
+          to="/shop" 
           text="积分商城" 
         />
       </van-grid>

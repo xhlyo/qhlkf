@@ -1,5 +1,12 @@
 <template>
-  <div class="follow-container">我关注的</div>  
+  <div class="follow-container">
+    <van-nav-bar
+      class="app-nav-bar"
+      title="我的关注"
+      left-arrow
+      @click-left="$router.back()"
+    />
+  </div>  
 </template>
 
 <script>

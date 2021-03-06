@@ -1,5 +1,12 @@
 <template>
-  <div class="praise-container">我的所有赞</div>  
+  <div class="praise-container">
+    <van-nav-bar
+      class="app-nav-bar"
+      title="我的所有赞"
+      left-arrow
+      @click-left="$router.back()"
+    />    
+  </div>  
 </template>
 
 <script>

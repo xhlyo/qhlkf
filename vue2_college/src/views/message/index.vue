@@ -8,21 +8,21 @@
             icon-prefix="Guali"
             icon="xihuan"
             text="赞和收藏" 
-            to="/"
+            to="/keep/praise"
           />
           <van-grid-item
             class="nav-grid-item" 
             icon-prefix="Guali"
             icon="faxian" 
             text="新增关注"
-            to="/" 
+            to="/new/follow" 
           />
           <van-grid-item
             class="nav-grid-item"      
             icon-prefix="Guali"
             icon="pinglun" 
             text="评论和 @ "
-            to="/" 
+            to="/call/comment" 
           />
         </van-grid>
         
@@ -58,20 +58,6 @@
             to="/"
             title="校园通知"  
             label="一定要看哦" />
-          <van-cell
-            icon-prefix="Guali"
-            icon="xiaoxi" 
-            to="/"  
-            title="最新消息" 
-            label="最新的学校消息看了吗?" 
-          />
-          <van-cell
-            icon-prefix="Guali"
-            icon="xiaoxi" 
-            to="/"  
-            title="....." 
-            label="你关注的人给你发来了消息" 
-          />
         </van-cell-group>
       </van-tab>
     </van-tabs>

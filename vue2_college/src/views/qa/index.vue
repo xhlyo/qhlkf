@@ -3,7 +3,7 @@
     <van-tabs class="channel-tabs" v-model="active">
       <van-tab title="关注">
         <van-cell class="follow-info">
-          <div slot="title" class="name">测试内容
+          <div slot="title" class="name">气泡弹出框
             <van-button
               round
               class="more"
@@ -21,8 +21,7 @@
           <div class="markdown-body" ref="article-content">
             《蝶恋花·海燕双来归画栋》
             海燕双来归画栋。帘影无风，花影频移动。半醉腾腾春睡重。绿鬟堆枕香云拥。
-            翠被双盘金缕凤。忆得前春，有个人人共。花里黄莺时一弄。日斜惊起相思梦。
-          </div>
+            翠被双盘金缕凤。忆</div>
           <div class="follow-bottom">
             <van-icon
               class="good-job" 
@@ -56,9 +55,10 @@
           />
           <div slot="label" class="pubdate">几个月前</div>
           <div class="markdown-body" ref="article-content">
-            《蝶恋花·海燕双来归画栋》
-            海燕双来归画栋。帘影无风，花影频移动。半醉腾腾春睡重。绿鬟堆枕香云拥。
-            翠被双盘金缕凤。忆得前春，有个人人共。花里黄莺时一弄。日斜惊起相思梦。
+            《红楼梦十二曲——终身误》
+            都道是金玉良缘，俺只念木石前盟。
+            空对着山中高士晶莹雪，终不忘世外仙姝寂寞林。
+            叹人间美中不足今方信。纵然是齐眉举案，到底意难平。
           </div>
           <div class="follow-bottom">
             <van-icon
@@ -143,7 +143,7 @@ export default {
   }
   .more {
     color: red;
-    margin-left: 200px;
+    margin-left: 180px;
   }
   .pubdate {
     // 发布时间      
@@ -156,6 +156,7 @@ export default {
   }
   .follow-bottom { // 底部评论
     position: fixed;
+    padding-top: 20px;
   }
 }
 
@@ -192,6 +193,7 @@ export default {
   }
   .follow-bottom { // 底部评论
     position: fixed;
+    padding-top: 20px;
   }
 }
 

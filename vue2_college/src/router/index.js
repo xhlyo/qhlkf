@@ -42,6 +42,24 @@ const routes = [
         component: () => import('@/views/message/'),
         meta: { requiresAuth: true }
       },
+      { // message 下的 组件
+        path: '/keep/praise',
+        name: 'mes_keep_praise',
+        component: () => import('@/views/mes_own/keep_praise.vue'),
+        meta: { requiresAuth: true }
+      },
+      { // message 下的 组件
+        path: '/new/follow',
+        name: 'mes_new_follow',
+        component: () => import('@/views/mes_own/new_follow.vue'),
+        meta: { requiresAuth: true }
+      },
+      { // message 下的 组件
+        path: '/call/comment',
+        name: 'mes_call_comment',
+        component: () => import('@/views/mes_own/call_comment.vue'),
+        meta: { requiresAuth: true }
+      },
       {
         path: '/my',
         name: 'my',
@@ -73,13 +91,13 @@ const routes = [
     props: true,
     meta: { requiresAuth: true }
   },
-  { // 一级路由
+  { // 一级路由 编辑资料
     path: '/user/profile',
     name: 'user-profile',
     component: () => import('@/views/user-profile'),
     meta: { requiresAuth: false }
   },
-  { // 一级路由
+  { // 一级路由 广理图灵
     path: '/user/chat',
     name: 'user-chat',
     component: () => import('@/views/user-chat'),
@@ -114,6 +132,18 @@ const routes = [
     path: '/my/keep',
     name: 'my-keep',
     component: () => import('@/views/my_fun/my_keep.vue'),
+    meta: { requiresAuth: true }
+  },
+  { // 历史记录
+    path: '/history',
+    name: 'my-history',
+    component: () => import('@/views/my_fun/my_history.vue'),
+    meta: { requiresAuth: true }
+  },
+  { // 积分商城
+    path: '/shop',
+    name: 'my-shop',
+    component: () => import('@/views/my_fun/my_shop.vue'),
     meta: { requiresAuth: true }
   },
   

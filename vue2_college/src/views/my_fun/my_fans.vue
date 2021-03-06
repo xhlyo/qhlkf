@@ -1,5 +1,12 @@
 <template>
-  <div class="fans-container">我的粉丝</div>  
+  <div class="fans-container">
+    <van-nav-bar
+      class="app-nav-bar"
+      title="我的粉丝"
+      left-arrow
+      @click-left="$router.back()"
+    />       
+  </div>  
 </template>
 
 <script>

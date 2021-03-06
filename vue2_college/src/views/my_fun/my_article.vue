@@ -1,5 +1,12 @@
 <template>
-  <div class="article-container">查看文章</div>  
+  <div class="article-container">
+    <van-nav-bar
+      class="app-nav-bar"
+      title="查看文章"
+      left-arrow
+      @click-left="$router.back()"
+    />
+  </div>  
 </template>
 
 <script>
