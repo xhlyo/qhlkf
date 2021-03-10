@@ -157,6 +157,7 @@ export default {
   .follow-bottom { // 底部评论
     position: fixed;
     padding-top: 20px;
+    width: 344px;
   }
 }
 
@@ -194,6 +195,7 @@ export default {
   .follow-bottom { // 底部评论
     position: fixed;
     padding-top: 20px;
+    width: 344px;
   }
 }
 
